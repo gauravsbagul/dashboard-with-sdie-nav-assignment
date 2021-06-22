@@ -1,30 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { NavigationBar } from './components/NavigationBar';
-import { Home } from './Home';
-import { About } from './About';
-import { NoMatch } from './NoMatch';
-import Sidebar from './components/Sidebar';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <React.Fragment>
-      <Router>
-        <NavigationBar />
+import Toolbar from './components/Toolbar/ToolBar.js'
+import SideDrawer from './components/SideDrawer/SideDrawer'
+import Backdrop from './components/Backdrop/Backdrop'
 
-        <Sidebar />
+class App extends Component {
+  state = {
+    sideDrawerOpen: false,
+  }
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route component={NoMatch} />
-        </Switch>
-      </Router>
-    </React.Fragment>
-  );
+  drawerToggleClickHandler = () => {
+    this.setState(prevState => {
+      return { sideDrawerOpen: !prevState.sideDrawerOpen }
+    })
+  }
+
+  backdropClickHandler = () => {
+     this.setState({ sideDrawerOpen: false })
+  }
+
+  render() {
+    let backdrop
+    let sideDrawer
+     
+
+    if (this.state.sideDrawerOpen) {
+      backdrop=<Backdrop click={ this.backdropClickHandler } />
+     }
+    return (
+      <div style={{ height: '100vh'}}>
+        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
+        <SideDrawer show={ this.state.sideDrawerOpen }/>
+        {backdrop}
+        
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
