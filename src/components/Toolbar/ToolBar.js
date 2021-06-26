@@ -13,18 +13,15 @@ const Toolbar=props => (
                 <a href="/">THE LOGO</a>
             </div>
 
-            <div className="spacer" />
-
+            <input className="search-bar"
+                placeholder={'Search for resources, services and documentation'}
+            />
+ 
             <div className="toolbar_navigation-item">
                 <ul>
                     <li>
                         <a href="/">
-                            Product
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            Users
+                            US West Phone
                         </a>
                     </li>
                 </ul>

@@ -28,8 +28,10 @@
     text-decoration: none
 }
 
-.spacer{
+.search-bar{
     flex: 1;
+    margin: 10px;
+    border-radius: 4px;
 }
 
 .toolbar_navigation-item ul{

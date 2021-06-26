@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Toolbar from './components/Toolbar/ToolBar.js'
 import SideDrawer from './components/SideDrawer/SideDrawer'
 import Backdrop from './components/Backdrop/Backdrop'
-
+import {Home} from './components/Home/Home'
 class App extends Component {
   state = {
     sideDrawerOpen: false,
@@ -21,7 +21,6 @@ class App extends Component {
 
   render() {
     let backdrop
-    let sideDrawer
      
 
     if (this.state.sideDrawerOpen) {
@@ -31,8 +30,10 @@ class App extends Component {
       <div style={{ height: '100vh'}}>
         <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
         <SideDrawer show={ this.state.sideDrawerOpen }/>
-        {backdrop}
+        { backdrop }
         
+        <Home />
+
       </div>
     )
   }

@@ -3,23 +3,27 @@ import React from 'react'
 import './SideDrawer.css'
 
 const SideDrawer=props => {
-console.log('Log: ~> file: SideDrawer.js ~> line 6 ~> props', props)
+  console.log('Log: ~> file: SideDrawer.js ~> line 6 ~> props', props)
 
-  
- let className = props.show ?  'side-drawer open' : 'side-drawer'
+
+  let className=props.show? 'side-drawer open':'side-drawer'
+
+  const sideBarOptions=[{ name: 'Compute', }, { name: 'Block Storage' }, { name: 'Object Storage' }, { name: 'File' }]
 
   return (
-    <nav className={className}>
+    <nav className={ className }>
       <ul>
-        <li>
-          <a href="/">SideDrawer option one</a>
-        </li>
-        <li>
-          <a href="/">Users</a>
-        </li>
+        { sideBarOptions.map((item) => {
+          return (
+            <li>
+              <a href="/">{ item.name }</a>
+              <span>-></span>
+            </li>
+          )
+        }) }
       </ul>
     </nav>
-  
+
   )
 }
 
