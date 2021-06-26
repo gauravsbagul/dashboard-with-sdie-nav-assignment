@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 // import { Card, Button } from 'react-bootstrap';
 import db from '../../assets/database.png'
+import down from '../../assets/down-arrow.png'
+import up from '../../assets/up-arrow.png'
+
 import './Home.css'
 import { Doughnut } from 'react-chartjs-2';
 
-const data = {
+const data={
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
   datasets: [
     {
@@ -58,7 +61,7 @@ const Card=({ title, duration, subTitle, onClick }) => {
         padding: '5px',
         borderWidth: '1px',
 
-      } } onClick={onClick}>
+      } } onClick={ onClick }>
         { title }
         <div>
 
@@ -90,7 +93,7 @@ const CardContainer=({ children, styles, ...rest }) => <div style={ {
 } } { ...rest } >{ children }</div>
 
 export const Home=(props) => {
-  const [isChartOn, setIsChartOn] = useState(false)
+  const [isChartOn, setIsChartOn]=useState(false)
 
   const [isCollapsed, setIsCollapsed]=useState(false)
 
@@ -104,16 +107,16 @@ export const Home=(props) => {
     <>
       <div style={ { flex: 1, height: isChartOn? '20px':'100%', justifyContent: 'space-between', display: 'flex', backgroundColor: '#eee' } }>
         <CardContainer styles={ { height: !isCollapsed? '10px':'40%' } }>
-          { isCollapsed? <>  <Card onClick={_oClickOfCard}  title={ 'Automation Data warehouse' } subTitle={ 'Create an AWD database' } duration={ '3-5' } />
-            <Card onClick={_oClickOfCard} title={ 'Automation Data warehouse' } subTitle={ 'Create an AWD database' } duration={ '3-5' } />
-            <Card onClick={_oClickOfCard} title={ 'Automation Data warehouse' } subTitle={ 'Create an AWD database' } duration={ '3-5' } /></>:null }
+          { isCollapsed? <>  <Card onClick={ _oClickOfCard } title={ 'Automation Data warehouse' } subTitle={ 'Create an AWD database' } duration={ '3-5' } />
+            <Card onClick={ _oClickOfCard } title={ 'Automation Data warehouse' } subTitle={ 'Create an AWD database' } duration={ '3-5' } />
+            <Card onClick={ _oClickOfCard } title={ 'Automation Data warehouse' } subTitle={ 'Create an AWD database' } duration={ '3-5' } /></>:null }
           <div onClick={ () => setIsCollapsed(!isCollapsed) } >
-            { isCollapsed? 'collapse':'Expand' } <img src={ db } style={ { height: '15px' } } />
+            { isCollapsed? 'collapse':'Expand' } <img src={ isCollapsed? up:down } style={ { height: '15px' } } />
           </div>
         </CardContainer>
-        {isChartOn && <Doughnut data={data} />}
+        { isChartOn&&<Doughnut data={ data } /> }
       </div>
-    
+
     </>
 
   )
